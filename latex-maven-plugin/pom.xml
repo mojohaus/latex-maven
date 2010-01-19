@@ -105,4 +105,34 @@
     <java.target.version>1.5</java.target.version>
   </properties>
 
+  <profiles>
+    <profile>
+      <id>latex-integration-test</id>
+      <activation>
+        <property>
+          <name>latex.installed</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>shitty-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>clean</goal>
+                  <goal>install</goal>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
