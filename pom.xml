@@ -35,7 +35,6 @@
   <modules>
     <module>latex-maven-plugin</module>
     <module>latex-maven-archetype</module>
-    <module>papers</module>
   </modules>
 
   <name>LaTeX Maven</name>
