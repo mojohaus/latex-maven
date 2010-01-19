@@ -33,6 +33,26 @@ LaTeX Mojo
 
   * {{{latex-mojo.html}latex:latex}} build the LaTeX documents.
 
+* Quickstart
+
+  You can quickly get started by generating your LaTeX project from our artifact:
+
+------------------------------------------------------------------------------------------------------------------------
+mvn archetype:create \
+    -DarchetypeGroupId=org.codehaus.mojo \
+    -DarchetypeArtifactId=latex-maven-archetype \
+    -DarchetypeVersion=1.0-SNAPSHOT \
+    -DgroupId=org.myorganization \
+    -DartifactId=papers
+-----------------------------------------------------------------------------------------------------------------------
+
+  You can then run the <<<latex:latex>>> goal:
+
+-----------------------------------------------------------------------------------------------------------------------
+cd papers
+mvn latex:latex
+-----------------------------------------------------------------------------------------------------------------------
+
 * Usage
 
   The convention is that your LaTeX documents source code is located in <<<src/main/latex>>> like in the following
