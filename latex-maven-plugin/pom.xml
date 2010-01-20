@@ -104,20 +104,20 @@
     <java.source.version>1.5</java.source.version>
     <java.target.version>1.5</java.target.version>
   </properties>
-  
+
   <distributionManagement>
-      <!-- Prevent accidental release of official version from sandbox -->
-      <repository>
-        <id>repo1</id>
-        <name>Redirected Snapshots repository</name>
-        <url>scp://localhost</url>
-      </repository>
-      <!-- force official and sandbox plugins to appear at the same level -->
-      <site>
-        <id>codehaus.org</id>
-        <name>Mojo Website</name>
-        <url>dav:https://dav.codehaus.org/mojo/latex-maven-plugin</url>
-      </site>
+    <!-- Prevent accidental release of official version from sandbox -->
+    <repository>
+      <id>repo1</id>
+      <name>Redirected Snapshots repository</name>
+      <url>scp://localhost</url>
+    </repository>
+    <!-- force official and sandbox plugins to appear at the same level -->
+    <site>
+      <id>codehaus.org</id>
+      <name>Mojo Website</name>
+      <url>dav:https://dav.codehaus.org/mojo/latex-maven-plugin</url>
+    </site>
   </distributionManagement>
 
   <profiles>
@@ -133,14 +133,23 @@
         <defaultGoal>install</defaultGoal>
         <plugins>
           <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>shitty-maven-plugin</artifactId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <version>1.5</version>
+            <configuration>
+              <projectsDirectory>src/it</projectsDirectory>
+              <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+              <pomIncludes>
+                <pomInclude>*/pom.xml</pomInclude>
+              </pomIncludes>
+              <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+              <postBuildHookScript>validate.groovy</postBuildHookScript>
+            </configuration>
             <executions>
               <execution>
+                <id>integration-test</id>
                 <goals>
-                  <goal>clean</goal>
                   <goal>install</goal>
-                  <goal>test</goal>
+                  <goal>run</goal>
                 </goals>
               </execution>
             </executions>
