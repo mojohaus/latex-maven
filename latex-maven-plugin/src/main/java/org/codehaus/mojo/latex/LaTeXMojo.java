@@ -70,7 +70,7 @@ public class LaTeXMojo
     /**
      * The LaTeX builds directory.
      *
-     * @parameter expression="${project.build.directory}/latex"
+     * @parameter expression="${project.latex.build.directory}" default-value="${project.build.directory}/latex"
      * @required
      */
     private File latexBuildDir;
