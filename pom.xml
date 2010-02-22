@@ -21,8 +21,8 @@
 
   <parent>
     <groupId>org.codehaus.mojo</groupId>
-    <artifactId>mojo-sandbox-parent</artifactId>
-    <version>5</version>
+    <artifactId>mojo-parent</artifactId>
+    <version>23</version>
   </parent>
 
   <prerequisites>

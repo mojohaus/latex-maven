@@ -41,7 +41,7 @@ LaTeX Mojo
 mvn archetype:create \
     -DarchetypeGroupId=org.codehaus.mojo \
     -DarchetypeArtifactId=latex-maven-archetype \
-    -DarchetypeVersion=1.0-SNAPSHOT \
+    -DarchetypeVersion=1.0 \
     -DgroupId=org.myorganization \
     -DartifactId=papers
 -----------------------------------------------------------------------------------------------------------------------
