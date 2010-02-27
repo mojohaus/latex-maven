@@ -21,12 +21,12 @@
   <parent>
     <artifactId>latex-maven</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>latex-maven-archetype</artifactId>
 
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
 
   <name>LaTeX Maven Archetype</name>
   <description>The LaTeX Maven Archetype is kickstarts your LaTeX / Maven projects.</description>
