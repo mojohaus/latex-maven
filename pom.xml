@@ -14,8 +14,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -32,7 +31,7 @@
   <artifactId>latex-maven</artifactId>
 
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <modules>
     <module>latex-maven-plugin</module>
@@ -71,9 +70,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/latex-maven</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/latex-maven</developerConnection>
-    <url>http://fisheye.codehaus.org/browse/mojo/trunk/mojo/latex-maven</url>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/tags/latex-maven-1.0</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/latex-maven-1.0</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/mojo/tags/latex-maven-1.0</url>
   </scm>
 
   <issueManagement>
