@@ -105,13 +105,6 @@
   </properties>
 
   <distributionManagement>
-    <!-- Prevent accidental release of official version from sandbox -->
-    <repository>
-      <id>repo1</id>
-      <name>Redirected Snapshots repository</name>
-      <url>scp://localhost</url>
-    </repository>
-    <!-- force official and sandbox plugins to appear at the same level -->
     <site>
       <id>codehaus.org</id>
       <name>Mojo Website</name>
