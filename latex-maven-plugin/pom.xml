@@ -24,6 +24,10 @@
     <artifactId>latex-maven</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
+  
+  <prerequisites>
+    <maven>2.0</maven>
+  </prerequisites>
 
   <artifactId>latex-maven-plugin</artifactId>
 
