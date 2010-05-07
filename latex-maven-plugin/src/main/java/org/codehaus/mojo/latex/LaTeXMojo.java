@@ -109,8 +109,10 @@ public class LaTeXMojo
             final File bibFile = new File( dir, dir.getName() + ".bib" );
 
             final CommandLine pdfLaTeX =
-                parse( executablePath( "pdflatex" ) ).addArgument( "--halt-on-error" ).addArgument(
-                    texFile.getAbsolutePath() );
+                parse( executablePath( "pdflatex" ) )
+                    .addArgument( "-shell-escape" )
+                    .addArgument( "--halt-on-error" )
+                    .addArgument( texFile.getAbsolutePath() );
 
             final CommandLine bibTeX = parse( executablePath( "bibtex" ) ).addArgument( dir.getName() );
 
