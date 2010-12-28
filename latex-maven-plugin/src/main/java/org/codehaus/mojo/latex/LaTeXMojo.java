@@ -113,10 +113,16 @@ public class LaTeXMojo
                     .addArgument( "-shell-escape" )
                     .addArgument( "--halt-on-error" )
                     .addArgument( texFile.getAbsolutePath() );
-            getLog().debug( "pdflatex: " + pdfLaTeX.getExecutable() );
+            if ( getLog().isDebugEnabled() )
+            {
+                getLog().debug( "pdflatex: " + pdfLaTeX );
+            }
 
             final CommandLine bibTeX = parse( executablePath( "bibtex" ) ).addArgument( dir.getName() );
-            getLog().debug( "bibtex: " + bibTeX.getExecutable() );
+            if ( getLog().isDebugEnabled() )
+            {
+                getLog().debug( "bibtex: " + bibTeX );
+            }
 
             execute( pdfLaTeX, dir );
             if ( bibFile.exists() )
