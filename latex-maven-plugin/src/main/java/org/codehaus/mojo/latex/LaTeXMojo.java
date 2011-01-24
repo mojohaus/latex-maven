@@ -19,6 +19,7 @@ package org.codehaus.mojo.latex;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -26,10 +27,12 @@ import org.apache.maven.plugin.MojoFailureException;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.util.Iterator;
 
 import static org.apache.commons.exec.CommandLine.parse;
 import static org.apache.commons.io.FileUtils.copyDirectory;
 import static org.apache.commons.io.FileUtils.copyFile;
+import static org.apache.commons.io.FileUtils.iterateFiles;
 
 /**
  * LaTeX documents building goal.
@@ -176,6 +179,13 @@ public class LaTeXMojo
             {
                 copyDirectory( commonsDir, target );
             }
+
+            final Iterator iterator = iterateFiles(target, new String[]{ ".svn" }, true);
+            while ( iterator.hasNext() )
+            {
+                FileUtils.deleteDirectory( (File) iterator.next());
+            }
+
         }
 
         return buildDirs;
