@@ -152,7 +152,7 @@ public class LaTeXMojo
 
     private boolean requiresBuilding( File dir, File pdfFile )
     {
-        Collection texFiles = FileUtils.listFiles(dir, new String[]{".tex"}, true);
+        Collection texFiles = FileUtils.listFiles( dir, new String[]{ ".tex", ".bib" }, true );
         if ( pdfFile.exists() )
         {
             boolean upToDate = true;
