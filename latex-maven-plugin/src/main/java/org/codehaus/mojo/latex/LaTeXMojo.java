@@ -86,7 +86,6 @@ public class LaTeXMojo
      */
     private String binariesPath;
 
-    @Override
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
