@@ -27,6 +27,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Iterator;
 
 import static org.apache.commons.exec.CommandLine.parse;
@@ -111,31 +112,64 @@ public class LaTeXMojo
             final File pdfFile = new File( dir, dir.getName() + ".pdf" );
             final File bibFile = new File( dir, dir.getName() + ".bib" );
 
-            final CommandLine pdfLaTeX =
-                parse( executablePath( "pdflatex" ) )
-                    .addArgument( "-shell-escape" )
-                    .addArgument( "--halt-on-error" )
-                    .addArgument( texFile.getAbsolutePath() );
-            if ( getLog().isDebugEnabled() )
+            if ( requiresBuilding(dir, pdfFile) )
             {
-                getLog().debug( "pdflatex: " + pdfLaTeX );
-            }
 
-            final CommandLine bibTeX = parse( executablePath( "bibtex" ) ).addArgument( dir.getName() );
-            if ( getLog().isDebugEnabled() )
-            {
-                getLog().debug( "bibtex: " + bibTeX );
-            }
+                final CommandLine pdfLaTeX =
+                    parse( executablePath( "pdflatex" ) )
+                        .addArgument( "-shell-escape" )
+                        .addArgument( "--halt-on-error" )
+                        .addArgument( texFile.getAbsolutePath() );
+                if ( getLog().isDebugEnabled() )
+                {
+                    getLog().debug( "pdflatex: " + pdfLaTeX );
+                }
 
-            execute( pdfLaTeX, dir );
-            if ( bibFile.exists() )
-            {
-                execute( bibTeX, dir );
+                final CommandLine bibTeX = parse( executablePath( "bibtex" ) ).addArgument( dir.getName() );
+                if ( getLog().isDebugEnabled() )
+                {
+                    getLog().debug( "bibtex: " + bibTeX );
+                }
+
                 execute( pdfLaTeX, dir );
-            }
-            execute( pdfLaTeX, dir );
+                if ( bibFile.exists() )
+                {
+                    execute( bibTeX, dir );
+                    execute( pdfLaTeX, dir );
+                }
+                execute( pdfLaTeX, dir );
 
-            copyFile( pdfFile, new File( buildDir, pdfFile.getName() ) );
+                copyFile( pdfFile, new File( buildDir, pdfFile.getName() ) );
+            }
+            else
+            {
+                if ( getLog().isInfoEnabled() )
+                {
+                    getLog().info( "Skipping: no LaTeX changes detected in " + dir.getCanonicalPath() );
+                }
+            }
+        }
+    }
+
+    private boolean requiresBuilding( File dir, File pdfFile )
+    {
+        Collection texFiles = FileUtils.listFiles(dir, new String[]{".tex"}, true);
+        if ( pdfFile.exists() )
+        {
+            boolean upToDate = true;
+            Iterator it = texFiles.iterator();
+            while( it.hasNext() && upToDate )
+            {
+                if ( FileUtils.isFileNewer( (File) it.next(), pdfFile ) )
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
