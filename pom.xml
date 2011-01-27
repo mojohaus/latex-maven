@@ -31,7 +31,7 @@
   <artifactId>latex-maven</artifactId>
 
   <packaging>pom</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
 
   <modules>
     <module>latex-maven-plugin</module>
@@ -70,9 +70,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/latex-maven</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/latex-maven</developerConnection>
-    <url>http://fisheye.codehaus.org/browse/mojo/trunk/mojo/latex-maven</url>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/tags/latex-maven-1.1</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/latex-maven-1.1</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/mojo/tags/latex-maven-1.1</url>
   </scm>
 
   <issueManagement>
