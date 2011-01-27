@@ -3,7 +3,7 @@
     ------------
     Julien Ponge
     ------------
-    2010-01-13
+    2011-01-27
     ------------
 
 ~~ Copyright 2010 INRIA / CITI Laboratory / Amazones Research Team.
@@ -41,7 +41,7 @@ LaTeX Mojo
 mvn archetype:create \
     -DarchetypeGroupId=org.codehaus.mojo \
     -DarchetypeArtifactId=latex-maven-archetype \
-    -DarchetypeVersion=1.0 \
+    -DarchetypeVersion=1.1 \
     -DgroupId=org.myorganization \
     -DartifactId=papers
 -----------------------------------------------------------------------------------------------------------------------
