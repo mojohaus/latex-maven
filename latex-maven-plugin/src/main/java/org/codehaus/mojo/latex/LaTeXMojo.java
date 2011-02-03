@@ -140,30 +140,38 @@ public class LaTeXMojo
 
                 copyFile( pdfFile, new File( buildDir, pdfFile.getName() ) );
             }
-            else
-            {
-                if ( getLog().isInfoEnabled() )
-                {
-                    getLog().info( "Skipping: no LaTeX changes detected in " + dir.getCanonicalPath() );
-                }
-            }
         }
     }
 
     private boolean requiresBuilding( File dir, File pdfFile )
+        throws IOException
     {
-        Collection texFiles = FileUtils.listFiles( dir, new String[]{ ".tex", ".bib" }, true );
+        Collection texFiles = FileUtils.listFiles( dir, new String[]{ "tex", "bib" }, true );
+        getLog().info(texFiles.toString());
         if ( pdfFile.exists() )
         {
             boolean upToDate = true;
             Iterator it = texFiles.iterator();
             while( it.hasNext() && upToDate )
             {
-                if ( FileUtils.isFileNewer( (File) it.next(), pdfFile ) )
+                File file = (File) it.next();
+                if ( FileUtils.isFileNewer(file, pdfFile ) )
                 {
+                    if ( getLog().isInfoEnabled() )
+                    {
+                        getLog().info( "Changes detected on " + file.getAbsolutePath() );
+                    }
                     return true;
                 }
+                if ( getLog().isInfoEnabled() )
+                {
+                    getLog().info( "No change detected on " + file.getAbsolutePath() );
+                }
             }
+             if ( getLog().isInfoEnabled() )
+             {
+                getLog().info( "Skipping: no LaTeX changes detected in " + dir.getCanonicalPath() );
+             }
             return false;
         }
         else
