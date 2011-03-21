@@ -86,6 +86,13 @@ public class LaTeXMojo
      */
     private String binariesPath;
 
+    /**
+     * Name of bibtex executable. Use this to invoke bibtex8 or biber instead of bibtex.
+     *
+     * @parameter expression="${latex.bibtex}" default-value="bibtex"
+     */
+    private String bibtex;
+
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -124,7 +131,7 @@ public class LaTeXMojo
                     getLog().debug( "pdflatex: " + pdfLaTeX );
                 }
 
-                final CommandLine bibTeX = parse( executablePath( "bibtex" ) ).addArgument( dir.getName() );
+                final CommandLine bibTeX = parse( executablePath( bibtex ) ).addArgument( dir.getName() );
                 if ( getLog().isDebugEnabled() )
                 {
                     getLog().debug( "bibtex: " + bibTeX );
